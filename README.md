@@ -66,3 +66,7 @@ Class | Method | HTTP request | Description
 ## Author
 
 support@activedbsoft.com
+
+
+## Source code
+Full source code of all clients for Active Query Builder Web API is available on GitHub. Get the source code of javascript here: [https://github.com/ActiveDbSoft/webapi-active-query-builder-php](https://github.com/ActiveDbSoft/webapi-active-query-builder-php)
