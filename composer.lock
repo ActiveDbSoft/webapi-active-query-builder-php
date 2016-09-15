@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34148bd2af80d41cdd50d01514d75cad",
-    "content-hash": "7ed4c0124b6231f22aa966c1ce13bf02",
+    "hash": "fa93c5ea41e3c465667b46b0def1454a",
+    "content-hash": "d0ecb1aaf88f1be85d12ba109438b7b7",
     "packages": [],
     "packages-dev": [
         {
@@ -1398,7 +1398,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
