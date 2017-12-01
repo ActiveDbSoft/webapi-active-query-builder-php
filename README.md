@@ -21,16 +21,44 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new WebApiActiveQueryBuilder\Api\ActiveQueryBuilderApi();
-$query = new \WebApiActiveQueryBuilder\SqlQuery(); // \WebApiActiveQueryBuilder\SqlQuery | Information about SQL query and it's context.
+$api = new WebApiActiveQueryBuilder\ActiveQueryBuilderApi();
+$metadataGuid= "b3207f4f-b1f4-4dc2-979b-7724ed2d0221";
+$sql = "Select customer_id, first_name From customer";
 
-try {
-    $result = $api_instance->getQueryColumnsPost($query);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ActiveQueryBuilderApi->getQueryColumnsPost: ', $e->getMessage(), PHP_EOL;
-}
+$query = new WebApiActiveQueryBuilder\SqlQuery(); // \WebApiActiveQueryBuilder\SqlQuery | Information about SQL query and it's context.
+$query->setGuid($metadataGuid);
+$query->setText($sql);
 
+$columns = $api->getQueryColumnsPost($query);
+print_r($columns);
+
+$transform = new WebApiActiveQueryBuilder\Transform();
+$transform->setGuid($metadataGuid);
+$transform->setSql($sql);	
+
+$filter = new WebApiActiveQueryBuilder\ConditionGroup();
+
+$condition = new WebApiActiveQueryBuilder\Condition();
+$condition->setField('customer_id');
+$condition->setConditionOperator('Greater');
+$condition->setValues(array(10));
+
+$filter->setConditions(array($condition));
+
+$page = new WebApiActiveQueryBuilder\Pagination();
+$page->setSkip(10);
+$page->setTake(5);
+	
+$order = new WebApiActiveQueryBuilder\Sorting();
+$order->setField('customer_id');
+$order->setOrder('asc');
+
+$transform->setFilter($filter);
+$transform->setPagination($page);
+$transform->setSortings(array($order));
+
+$result = $api->transformSqlPost($transform);
+print_r($result);
 ?>
 ```
 
